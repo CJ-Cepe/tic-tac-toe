@@ -69,6 +69,9 @@ body {
     border: 1px solid gray;
 }
 
+.taken {
+    pointer-events: none;
+}
 /*================== footer =================*/
 
 .disable {
