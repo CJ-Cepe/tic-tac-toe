@@ -46,11 +46,45 @@ function Scoreboard() {
 function Gameboard() {
     const board = ['', '', '', '', '', '', '', '', ''];
 
-    const setBoard = () => {};
-    const render = () => {};
+    const setBoard = (sign, index) => {
+        board[index] = sign;
+        console.log(board);
+    };
+    const render = () => {
+        let tiles = document.querySelectorAll('.tile');
+        tiles.forEach((tile) => {
+            if (!tile.classList.contains('taken')) {
+                tile.textContent = board[tile.dataset.index];
+            }
+        });
+    };
 
     return { render, setBoard };
 }
 
 //IIFE
-const Game_Controller = (() => {})();
+const Game_Controller = (() => {
+    console.log('watermelon');
+    //Start-EL
+    let p1 = Player('1', 'Sigma', 'X'),
+        p2 = Player('2', 'Winston', 'O');
+    var currentPlayer = null;
+    //enable board
+
+    if (p1.getSign == 'X') {
+        currentPlayer = p1;
+    } else {
+        currentPlayer = p2;
+    }
+
+    let gameBoard = Gameboard();
+    console.log(p1.getSign(), p2.getSign());
+    let tiles = document.querySelectorAll('.tile');
+    tiles.forEach((tile) => {
+        tile.addEventListener('click', (e) => {
+            gameBoard.setBoard(currentPlayer.getSign(), tile.dataset.index);
+            gameBoard.render();
+            tile.classList.add('taken');
+        });
+    });
+})();
