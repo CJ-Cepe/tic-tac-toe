@@ -29,11 +29,12 @@ body {
 }
 
 .gameboard > div:nth-child(1) {
-    height: 20vh;
+    height: 15vh;
+    text-align: center;
 }
 
 .gameboard > div:nth-child(2) {
-    height: 60vh;
+    height: 65vh;
     background-color: bisque;
 }
 
@@ -42,6 +43,14 @@ body {
 }
 
 /*================== score board =================*/
+.gameboard > div:nth-child(1) > div {
+    background-color: blanchedalmond;
+    display: flex;
+}
+
+.gameboard > div:nth-child(1) > div div {
+    flex: 1;
+}
 
 /*================== game board =================*/
 .game {
