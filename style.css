@@ -36,6 +36,9 @@ body {
 .gameboard > div:nth-child(2) {
     height: 65vh;
     background-color: bisque;
+
+    display: flex;
+    justify-content: center;
 }
 
 .gameboard > div:nth-child(3) {
@@ -54,6 +57,10 @@ body {
 
 /*================== game board =================*/
 .game {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    border: 2px solid black;
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
