@@ -12,7 +12,7 @@
 * {
     margin: 0;
     padding: 0;
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
 }
 
 /*================== body =================*/
@@ -35,7 +35,6 @@ body {
 
 .gameboard > div:nth-child(2) {
     height: 65vh;
-    background-color: bisque;
 
     display: flex;
     justify-content: center;
@@ -43,11 +42,11 @@ body {
 
 .gameboard > div:nth-child(3) {
     height: 10vh;
+    text-align: center;
 }
 
 /*================== score board =================*/
 .gameboard > div:nth-child(1) > div {
-    background-color: blanchedalmond;
     display: flex;
 }
 
@@ -67,7 +66,10 @@ body {
 }
 /*================== tiles =================*/
 .tile {
+    border: 1px solid gray;
 }
+
+/*================== footer =================*/
 
 .disable {
     display: none;
