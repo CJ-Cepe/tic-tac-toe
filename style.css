@@ -15,6 +15,44 @@
     outline: 1px solid red;
 }
 
+/*================== body =================*/
+body {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+}
+
+/*================== main container =================*/
+.gameboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.gameboard > div:nth-child(1) {
+    height: 20vh;
+}
+
+.gameboard > div:nth-child(2) {
+    height: 60vh;
+    background-color: bisque;
+}
+
+.gameboard > div:nth-child(3) {
+    height: 10vh;
+}
+
+/*================== score board =================*/
+
+/*================== game board =================*/
+.game {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+/*================== tiles =================*/
+.tile {
+}
+
 .disable {
     display: none;
 }
