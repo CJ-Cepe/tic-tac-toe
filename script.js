@@ -46,6 +46,10 @@ function Scoreboard() {
 function Gameboard() {
     const board = ['', '', '', '', '', '', '', '', ''];
 
+    const getBoard = () => {
+        return [...board];
+    };
+
     const setBoard = (sign, index) => {
         board[index] = sign;
         console.log(board);
@@ -59,7 +63,7 @@ function Gameboard() {
         });
     };
 
-    return { render, setBoard };
+    return { render, setBoard, getBoard };
 }
 
 //regular function
