@@ -62,6 +62,30 @@ function Gameboard() {
     return { render, setBoard };
 }
 
+//regular function
+function checkWin(board) {
+    const winningCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+
+    winningCombinations.forEach((combination) => {
+        let [a, b, c] = combination;
+
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return board[a];
+        }
+    });
+
+    return null;
+}
+
 //IIFE
 const Game_Controller = (() => {
     console.log('watermelon');
