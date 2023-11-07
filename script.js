@@ -139,9 +139,17 @@ function PlayerRotation(p1, p2) {
 
 //IIFE
 const GameController = (() => {
-    //Start-EL
-    let p1 = Player('1', 'Sigma', 'X'),
-        p2 = Player('2', 'Winston', 'O');
+    let displayController = DisplayController();
+    let p1 = Player(
+            '1',
+            displayController.getP1Name(),
+            displayController.getP1Sign()
+        ),
+        p2 = Player(
+            '2',
+            displayController.getP2Name(),
+            displayController.getP2Sign()
+        );
     let gameBoard = Gameboard();
     let scoreBoard = Scoreboard();
     var playerRotation = PlayerRotation(p1, p2);
@@ -190,6 +198,49 @@ const GameController = (() => {
     });
 })();
 
+function DisplayController() {
+    const start = document.querySelector('#start-button');
+    const menu = document.querySelector('.menu');
+    const gameBoard = document.querySelector('.gameboard');
+    const P1MenuName = document.querySelector('#p1-name');
+    const p2MenuName = document.querySelector('#p2-name');
+    const p1Sign = 'X';
+    const p2Sign = 'O';
+
+    const p1GameName = gameBoard.querySelector('.p1');
+    const p2GameName = gameBoard.querySelector('.p2');
+
+    start.addEventListener('click', () => {
+        menu.classList.toggle('disable');
+        gameBoard.classList.toggle('disable');
+        p1GameName.textContent = `P1: ${P1MenuName.value}`;
+        p2GameName.textContent = `P2: ${p2MenuName.value}`;
+    });
+
+    const reset = () => {
+        menu.classList.toggle('disable');
+        gameBoard.classList.toggle('disable');
+    };
+
+    const getP1Name = () => {
+        return P1MenuName;
+    };
+
+    const getP2Name = () => {
+        return p2MenuName;
+    };
+
+    const getP1Sign = () => {
+        return p1Sign;
+    };
+
+    const getP2Sign = () => {
+        return p2Sign;
+    };
+
+    return { getP1Name, getP2Name, getP1Sign, getP2Sign, reset };
+}
+
 /*================== Steps =================*/
 
 /*
@@ -198,6 +249,8 @@ const GameController = (() => {
     3. handle switching of players
     4. reposition render()
     5. do set up form
+    6. setup start button
+    7. displayController
 
 
 
