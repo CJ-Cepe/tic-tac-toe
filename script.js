@@ -101,6 +101,10 @@ function checkWin(board) {
         }
     }
 
+    if (!board.includes('')) {
+        return 'tie';
+    }
+
     return null;
 }
 
@@ -134,7 +138,7 @@ function PlayerRotation(p1, p2) {
 }
 
 //IIFE
-const Game_Controller = (() => {
+const GameController = (() => {
     //Start-EL
     let p1 = Player('1', 'Sigma', 'X'),
         p2 = Player('2', 'Winston', 'O');
@@ -156,7 +160,11 @@ const Game_Controller = (() => {
             let signWinner = checkWin(gameBoard.getBoard());
 
             //display winner - console
-            if (signWinner) {
+            if (signWinner == 'tie') {
+                console.log('its a Tie');
+                scoreBoard.addTie();
+                gameBoard.resetBoard();
+            } else if (signWinner) {
                 console.log(
                     `${playerRotation
                         .getCurrentPlayer()
@@ -174,8 +182,6 @@ const Game_Controller = (() => {
 
                 //reset
                 gameBoard.resetBoard();
-                gameBoard.render();
-
                 playerRotation.setCurrentPlayer();
             } else {
                 playerRotation.nextTurn();
