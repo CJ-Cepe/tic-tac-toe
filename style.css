@@ -12,7 +12,7 @@
 * {
     margin: 0;
     padding: 0;
-    /* outline: 1px solid red; */
+    outline: 1px solid red;
 }
 
 /*================== body =================*/
@@ -22,6 +22,88 @@ body {
     max-width: 100%;
 }
 
+/*================== menu container =================*/
+.menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu > h1 {
+    flex: 0.5;
+    font-size: 4rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.menu > div:nth-child(2) {
+    flex: 1;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menu > div:nth-child(2) div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.menu > div:nth-child(2) button {
+    width: 100%;
+}
+
+.menu > div:nth-child(2) img {
+    width: max(100px, 60%);
+}
+
+.menu > div:nth-child(2) label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu > div:nth-child(2) label input {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1.5rem;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    font-style: italic;
+}
+
+.menu input:focus,
+input:focus {
+    outline: none;
+}
+
+.menu > div:last-child {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+}
+
+.menu > div:last-child button {
+    font-size: 1.5rem;
+    width: 150px;
+    height: 50px;
+}
+
+.vs {
+    font-size: 3rem;
+    padding: 0 1rem 0 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .vs {
+        font-size: 2rem;
+        padding: 0 0.5rem 0 0.5rem;
+    }
+}
 /*================== main container =================*/
 .gameboard {
     display: flex;
