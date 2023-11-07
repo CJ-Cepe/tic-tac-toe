@@ -168,7 +168,7 @@ const GameController = (() => {
     displayController.setPlayerTurn(
         playerRotation.getCurrentPlayer().getName()
     );
-
+    let game = document.querySelector('.game');
     //give tiles event listeners
     let tiles = document.querySelectorAll('.tile');
     tiles.forEach((tile) => {
@@ -191,20 +191,34 @@ const GameController = (() => {
             //display tie as winner
             if (signWinner == 'tie') {
                 displayController.setScore(scoreBoard.addTie());
+                displayController.displayWinner(
+                    'tie',
+                    playerRotation.getCurrentPlayer().getName()
+                );
 
+                game.classList.add('taken');
                 //reset
-                gameBoard.resetBoard();
-                playerRotation.setCurrentPlayer();
+                // gameBoard.resetBoard();
+                //playerRotation.setCurrentPlayer();
             } else if (signWinner) {
                 //update scoring
                 if (playerRotation.getCurrentPlayer().getPlayerNo() === '1') {
                     displayController.setScore(scoreBoard.addP1());
+                    displayController.displayWinner(
+                        '1',
+                        playerRotation.getCurrentPlayer().getName()
+                    );
                 } else {
                     displayController.setScore(scoreBoard.addP2());
+                    displayController.displayWinner(
+                        '2',
+                        playerRotation.getCurrentPlayer().getName()
+                    );
                 }
                 //reset
-                gameBoard.resetBoard();
-                playerRotation.setCurrentPlayer();
+                //gameBoard.resetBoard();
+                //playerRotation.setCurrentPlayer();
+                game.classList.add('taken');
             } else {
                 playerRotation.nextTurn();
                 displayController.setPlayerTurn(
@@ -212,6 +226,16 @@ const GameController = (() => {
                 );
             }
         });
+    });
+
+    const reset = document.querySelector('.reset');
+    reset.addEventListener('click', () => {
+        gameBoard.resetBoard();
+        playerRotation.setCurrentPlayer();
+        displayController.setPlayerTurn(
+            playerRotation.getCurrentPlayer().getName()
+        );
+        game.classList.remove('taken');
     });
 })();
 
@@ -239,7 +263,7 @@ function DisplayController() {
         p2GameName.textContent = `P2: ${p2MenuName.value}`;
     });
 
-    const reset = () => {
+    const restart = () => {
         menu.classList.toggle('disable');
         gameBoard.classList.toggle('disable');
     };
@@ -272,7 +296,15 @@ function DisplayController() {
 
     const setPlayerTurn = (player) => {
         console.log(player);
-        playerTurn.textContent = player;
+        playerTurn.textContent = `${player}'s turn`;
+    };
+
+    const displayWinner = (player, name) => {
+        if (player === 'tie') {
+            playerTurn.textContent = "It's a Tie!!!!";
+        } else {
+            playerTurn.textContent = `P${player} ${name} Wins!!!`;
+        }
     };
 
     return {
@@ -280,9 +312,9 @@ function DisplayController() {
         getP2Name,
         getP1Sign,
         getP2Sign,
-        reset,
         setScore,
         setPlayerTurn,
+        displayWinner,
     };
 }
 
