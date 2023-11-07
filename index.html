@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="./style.css" type="text/css" />
     </head>
     <body>
-        <div class="gameboard main-cont">
+        <div class="gameboard main-cont disable">
             <div>
                 <h1>Round <span>#</span></h1>
                 <div>
@@ -41,6 +41,22 @@
             </div>
             <div><span>p1</span>'s turn</div>
         </div>
-        <div class="menu main-cont disable"></div>
+        <div class="menu main-cont">
+            <h1>Tic Tac Toe</h1>
+            <button type="button"><img src="" alt="X" /></button>
+            <button type="button"><img src="" alt="O" /></button>
+
+            <label for="p1-name"
+                >Player 1 Name:
+                <input type="text" id="p1-name" placeholder="Ponyo" />
+            </label>
+
+            <label for="p2-name"
+                >Player 2 Name:
+                <input type="text" id="p2-name" placeholder="Totoro" />
+            </label>
+
+            <button type="button">Start</button>
+        </div>
     </body>
 </html>
