@@ -141,7 +141,11 @@ function PlayerRotation(p1, p2) {
 
 //IIFE
 const GameController = (() => {
+    //start
+
+    //display
     let displayController = DisplayController();
+    //player
     let p1 = Player(
             '1',
             displayController.getP1Name(),
@@ -152,49 +156,60 @@ const GameController = (() => {
             displayController.getP2Name(),
             displayController.getP2Sign()
         );
+    //gameboard
     let gameBoard = Gameboard();
+    //scoreboard
     let scoreBoard = Scoreboard();
-    var playerRotation = PlayerRotation(p1, p2);
+
+    //player rotation, pass players
+    let playerRotation = PlayerRotation(p1, p2);
+    //set which player gets X - first
     playerRotation.setCurrentPlayer();
+    displayController.setPlayerTurn(
+        playerRotation.getCurrentPlayer().getName()
+    );
 
+    //give tiles event listeners
     let tiles = document.querySelectorAll('.tile');
-
     tiles.forEach((tile) => {
         tile.addEventListener('click', (e) => {
+            //give board array corres sign
+            //pass current player sign and index
             gameBoard.setBoard(
                 playerRotation.getCurrentPlayer().getSign(),
                 tile.dataset.index
             );
+
+            //render the table
             gameBoard.render();
+            //add taken class
             tile.classList.add('taken');
+            //check if theres winner
             let signWinner = checkWin(gameBoard.getBoard());
 
             //display winner - console
+            //display tie as winner
             if (signWinner == 'tie') {
-                console.log('its a Tie');
                 displayController.setScore(scoreBoard.addTie());
-                gameBoard.resetBoard();
-            } else if (signWinner) {
-                console.log(
-                    `${playerRotation
-                        .getCurrentPlayer()
-                        .getName()} P${playerRotation
-                        .getCurrentPlayer()
-                        .getPlayerNo()} Wins!!!`
-                );
 
+                //reset
+                gameBoard.resetBoard();
+                playerRotation.setCurrentPlayer();
+            } else if (signWinner) {
                 //update scoring
                 if (playerRotation.getCurrentPlayer().getPlayerNo() === '1') {
                     displayController.setScore(scoreBoard.addP1());
                 } else {
                     displayController.setScore(scoreBoard.addP2());
                 }
-
                 //reset
                 gameBoard.resetBoard();
                 playerRotation.setCurrentPlayer();
             } else {
                 playerRotation.nextTurn();
+                displayController.setPlayerTurn(
+                    playerRotation.getCurrentPlayer().getName()
+                );
             }
         });
     });
@@ -206,8 +221,8 @@ function DisplayController() {
     const gameBoard = document.querySelector('.gameboard');
     const P1MenuName = document.querySelector('#p1-name');
     const p2MenuName = document.querySelector('#p2-name');
-    const p1Sign = 'X';
-    const p2Sign = 'O';
+    const p1Sign = 'O';
+    const p2Sign = 'X';
 
     const p1GameName = gameBoard.querySelector('.p1');
     const p2GameName = gameBoard.querySelector('.p2');
@@ -215,6 +230,7 @@ function DisplayController() {
     const p1Score = gameBoard.querySelector('.p1-score');
     const p2Score = gameBoard.querySelector('.p2-score');
     const tieScore = gameBoard.querySelector('.tie-score');
+    const playerTurn = gameBoard.querySelector('.turn');
 
     start.addEventListener('click', () => {
         menu.classList.toggle('disable');
@@ -229,11 +245,11 @@ function DisplayController() {
     };
 
     const getP1Name = () => {
-        return P1MenuName;
+        return P1MenuName.value;
     };
 
     const getP2Name = () => {
-        return p2MenuName;
+        return p2MenuName.value;
     };
 
     const getP1Sign = () => {
@@ -254,7 +270,20 @@ function DisplayController() {
         }
     };
 
-    return { getP1Name, getP2Name, getP1Sign, getP2Sign, reset, setScore };
+    const setPlayerTurn = (player) => {
+        console.log(player);
+        playerTurn.textContent = player;
+    };
+
+    return {
+        getP1Name,
+        getP2Name,
+        getP1Sign,
+        getP2Sign,
+        reset,
+        setScore,
+        setPlayerTurn,
+    };
 }
 
 /*================== Steps =================*/
@@ -267,6 +296,7 @@ function DisplayController() {
     5. do set up form
     6. setup start button
     7. displayController
+    8. playerTurn
 
 
 
