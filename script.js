@@ -189,3 +189,18 @@ const GameController = (() => {
         });
     });
 })();
+
+/*================== Steps =================*/
+
+/*
+    1. update scoring
+    2. handle tie
+    3. handle switching of players
+    4. reposition render()
+    5. do set up form
+
+
+
+
+
+*/
