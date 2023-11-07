@@ -104,6 +104,34 @@ function checkWin(board) {
     return null;
 }
 
+function turnMonitor(p1, p2) {
+    let currentPlayer, nextPlayer;
+
+    const setCurrentPlayer = () => {
+        if (p1.getSign() === 'X') {
+            currentPlayer = p1;
+            nextPlayer = p2;
+        } else {
+            currentPlayer = p2;
+            nextPlayer = p1;
+        }
+    };
+
+    const getCurrentPlayer = () => {
+        return currentPlayer;
+    };
+
+    const getNextPlayer = () => {
+        return nextPlayer;
+    };
+
+    const nextTurn = () => {
+        [currentPlayer, nextPlayer] = [nextPlayer, currentPlayer];
+    };
+
+    return { setCurrentPlayer, getCurrentPlayer, getNextPlayer, nextTurn };
+}
+
 //IIFE
 const Game_Controller = (() => {
     console.log('watermelon');
