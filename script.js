@@ -26,12 +26,14 @@ function Scoreboard() {
     const addRound = () => {
         round++;
     };
-    const addP1 = () => p1++;
+    const addP1 = () => {
+        return { player: '1', value: ++p1 };
+    };
     const addP2 = function () {
-        p2++;
+        return { player: '2', value: ++p2 };
     };
     function addTie() {
-        tie++;
+        return { player: 'tie', value: ++tie };
     }
 
     //getters
@@ -170,7 +172,7 @@ const GameController = (() => {
             //display winner - console
             if (signWinner == 'tie') {
                 console.log('its a Tie');
-                scoreBoard.addTie();
+                displayController.setScore(scoreBoard.addTie());
                 gameBoard.resetBoard();
             } else if (signWinner) {
                 console.log(
@@ -182,10 +184,10 @@ const GameController = (() => {
                 );
 
                 //update scoring
-                if (playerRotation.getCurrentPlayer().getPlayerNo() === 1) {
-                    scoreBoard.addP1();
+                if (playerRotation.getCurrentPlayer().getPlayerNo() === '1') {
+                    displayController.setScore(scoreBoard.addP1());
                 } else {
-                    scoreBoard.addP2();
+                    displayController.setScore(scoreBoard.addP2());
                 }
 
                 //reset
@@ -209,6 +211,10 @@ function DisplayController() {
 
     const p1GameName = gameBoard.querySelector('.p1');
     const p2GameName = gameBoard.querySelector('.p2');
+    const round = gameBoard.querySelector('.round');
+    const p1Score = gameBoard.querySelector('.p1-score');
+    const p2Score = gameBoard.querySelector('.p2-score');
+    const tieScore = gameBoard.querySelector('.tie-score');
 
     start.addEventListener('click', () => {
         menu.classList.toggle('disable');
@@ -238,7 +244,17 @@ function DisplayController() {
         return p2Sign;
     };
 
-    return { getP1Name, getP2Name, getP1Sign, getP2Sign, reset };
+    const setScore = (score) => {
+        if (score.player === 'tie') {
+            tieScore.textContent = score.value;
+        } else if (score.player === '1') {
+            p1Score.textContent = score.value;
+        } else if (score.player === '2') {
+            p2Score.textContent = score.value;
+        }
+    };
+
+    return { getP1Name, getP2Name, getP1Sign, getP2Sign, reset, setScore };
 }
 
 /*================== Steps =================*/
