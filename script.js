@@ -36,13 +36,30 @@ function Scoreboard() {
         return { player: 'tie', value: ++tie };
     }
 
+    const resetScoreBoard = () => {
+        round = 0;
+        p1 = 0;
+        p2 = 0;
+        tie = 0;
+    };
+
     //getters
     const getRound = () => round;
     const getP1 = () => p1;
     const getP2 = () => p2;
     const getTie = () => tie;
 
-    return { addRound, addP1, addP2, addTie, getRound, getP1, getP2, getTie };
+    return {
+        addRound,
+        addP1,
+        addP2,
+        addTie,
+        getRound,
+        getP1,
+        getP2,
+        getTie,
+        resetScoreBoard,
+    };
 }
 
 function Gameboard() {
@@ -237,6 +254,32 @@ const GameController = (() => {
         );
         game.classList.remove('taken');
     });
+
+    const restart = document.querySelector('.restart');
+    restart.addEventListener('click', () => {
+        displayController.restart();
+        scoreBoard.resetScoreBoard();
+        displayController.setScore({ player: 'tie', value: 0 });
+        displayController.setScore({ player: '1', value: 0 });
+        displayController.setScore({ player: '2', value: 0 });
+        gameBoard.resetBoard();
+
+        game.classList.remove('taken');
+        p1 = Player(
+            '1',
+            displayController.getP1Name(),
+            displayController.getP1Sign()
+        );
+        p2 = Player(
+            '2',
+            displayController.getP2Name(),
+            displayController.getP2Sign()
+        );
+        playerRotation.setCurrentPlayer();
+        displayController.setPlayerTurn(
+            playerRotation.getCurrentPlayer().getName()
+        );
+    });
 })();
 
 function DisplayController() {
@@ -315,6 +358,7 @@ function DisplayController() {
         setScore,
         setPlayerTurn,
         displayWinner,
+        restart,
     };
 }
 
