@@ -105,7 +105,7 @@ function checkWin(board) {
 }
 
 //regular function
-function turnMonitor(p1, p2) {
+function PlayerRotation(p1, p2) {
     let currentPlayer, nextPlayer;
 
     const setCurrentPlayer = () => {
@@ -140,15 +140,15 @@ const Game_Controller = (() => {
         p2 = Player('2', 'Winston', 'O');
     let gameBoard = Gameboard();
     let scoreBoard = Scoreboard();
-    var turn = turnMonitor(p1, p2);
-    turn.setCurrentPlayer();
+    var playerRotation = PlayerRotation(p1, p2);
+    playerRotation.setCurrentPlayer();
 
     let tiles = document.querySelectorAll('.tile');
 
     tiles.forEach((tile) => {
         tile.addEventListener('click', (e) => {
             gameBoard.setBoard(
-                turn.getCurrentPlayer().getSign(),
+                playerRotation.getCurrentPlayer().getSign(),
                 tile.dataset.index
             );
             gameBoard.render();
@@ -158,13 +158,15 @@ const Game_Controller = (() => {
             //display winner - console
             if (signWinner) {
                 console.log(
-                    `${turn.getCurrentPlayer().getName()} P${turn
+                    `${playerRotation
+                        .getCurrentPlayer()
+                        .getName()} P${playerRotation
                         .getCurrentPlayer()
                         .getPlayerNo()} Wins!!!`
                 );
 
                 //update scoring
-                if (turn.getCurrentPlayer().getPlayerNo() === 1) {
+                if (playerRotation.getCurrentPlayer().getPlayerNo() === 1) {
                     scoreBoard.addP1();
                 } else {
                     scoreBoard.addP2();
@@ -174,9 +176,9 @@ const Game_Controller = (() => {
                 gameBoard.resetBoard();
                 gameBoard.render();
 
-                turn.setCurrentPlayer();
+                playerRotation.setCurrentPlayer();
             } else {
-                turn.nextTurn();
+                playerRotation.nextTurn();
             }
         });
     });
