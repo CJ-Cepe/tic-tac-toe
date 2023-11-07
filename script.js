@@ -104,6 +104,7 @@ function checkWin(board) {
     return null;
 }
 
+//regular function
 function turnMonitor(p1, p2) {
     let currentPlayer, nextPlayer;
 
@@ -134,41 +135,48 @@ function turnMonitor(p1, p2) {
 
 //IIFE
 const Game_Controller = (() => {
-    console.log('watermelon');
     //Start-EL
     let p1 = Player('1', 'Sigma', 'X'),
         p2 = Player('2', 'Winston', 'O');
     let gameBoard = Gameboard();
     let scoreBoard = Scoreboard();
-    var currentPlayer = null;
-    //enable board
-
-    currentPlayer = p1.getSign() === 'X' ? p1 : p2;
+    var turn = turnMonitor(p1, p2);
+    turn.setCurrentPlayer();
 
     let tiles = document.querySelectorAll('.tile');
 
     tiles.forEach((tile) => {
         tile.addEventListener('click', (e) => {
-            gameBoard.setBoard(currentPlayer.getSign(), tile.dataset.index);
+            gameBoard.setBoard(
+                turn.getCurrentPlayer().getSign(),
+                tile.dataset.index
+            );
             gameBoard.render();
             tile.classList.add('taken');
             let signWinner = checkWin(gameBoard.getBoard());
+
+            //display winner - console
             if (signWinner) {
                 console.log(
-                    `${currentPlayer.getName()} P${currentPlayer.getPlayerNo()} Wins!!!`
-                    //restart
+                    `${turn.getCurrentPlayer().getName()} P${turn
+                        .getCurrentPlayer()
+                        .getPlayerNo()} Wins!!!`
                 );
 
-                if (currentPlayer.getPlayerNo() === 1) {
+                //update scoring
+                if (turn.getCurrentPlayer().getPlayerNo() === 1) {
                     scoreBoard.addP1();
                 } else {
                     scoreBoard.addP2();
                 }
 
+                //reset
                 gameBoard.resetBoard();
-                console.log('resetBoard');
                 gameBoard.render();
-                console.log('renderboard');
+
+                turn.setCurrentPlayer();
+            } else {
+                turn.nextTurn();
             }
         });
     });
