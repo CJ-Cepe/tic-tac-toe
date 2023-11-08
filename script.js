@@ -1,21 +1,13 @@
-//factory function
+//factory function - 2 instances
 function Player(playerNo, name, sign) {
-    function getPlayerNo() {
-        return playerNo;
-    }
-
-    function getName() {
-        return name;
-    }
-
-    function getSign() {
-        return sign;
-    }
+    const getPlayerNo = () => playerNo;
+    const getName = () => name;
+    const getSign = () => sign;
 
     return { getPlayerNo, getName, getSign };
 }
 
-//factory function
+//factory function - 1 instances each game
 function Scoreboard() {
     let round = 0,
         p1 = 0,
@@ -27,16 +19,16 @@ function Scoreboard() {
         round++;
     };
     const addP1 = () => {
-        return { player: '1', value: ++p1 };
+        return { player: '1', value: ++p1 }; //return objects
     };
     const addP2 = function () {
-        return { player: '2', value: ++p2 };
+        return { player: '2', value: ++p2 }; //return objects
     };
     function addTie() {
-        return { player: 'tie', value: ++tie };
+        return { player: 'tie', value: ++tie }; //return objects
     }
 
-    const resetScoreBoard = () => {
+    const reset = () => {
         round = 0;
         p1 = 0;
         p2 = 0;
@@ -58,7 +50,7 @@ function Scoreboard() {
         getP1,
         getP2,
         getTie,
-        resetScoreBoard,
+        reset,
     };
 }
 
@@ -71,29 +63,34 @@ function Gameboard() {
 
     const setBoard = (sign, index) => {
         board[index] = sign;
-        console.log(board);
     };
 
     const resetBoard = () => {
         for (let i = 0; i < board.length; i++) {
             board[i] = '';
         }
-        let tiles = document.querySelectorAll('.tile');
-        tiles.forEach((tile) => {
-            if (!tile.classList.remove('taken')) {
-                tile.textContent = board[tile.dataset.index];
-            }
-        });
+        updateTiles('reset');
     };
 
     const render = () => {
+        updateTiles('render');
+    };
+
+    //hoisted
+    function updateTiles(task) {
         let tiles = document.querySelectorAll('.tile');
         tiles.forEach((tile) => {
-            if (!tile.classList.contains('taken')) {
-                tile.textContent = board[tile.dataset.index];
+            if (task === 'render') {
+                if (!tile.classList.contains('taken')) {
+                    tile.textContent = board[tile.dataset.index];
+                }
+            } else if (task === 'reset') {
+                if (!tile.classList.remove('taken')) {
+                    tile.textContent = board[tile.dataset.index];
+                }
             }
         });
-    };
+    }
 
     return { render, setBoard, getBoard, resetBoard };
 }
@@ -141,6 +138,14 @@ function PlayerRotation(p1, p2) {
         }
     };
 
+    const getName = () => {
+        return currentPlayer.getName();
+    };
+
+    const getSign = () => {
+        return currentPlayer.getSign();
+    };
+
     const getCurrentPlayer = () => {
         return currentPlayer;
     };
@@ -153,59 +158,56 @@ function PlayerRotation(p1, p2) {
         [currentPlayer, nextPlayer] = [nextPlayer, currentPlayer];
     };
 
-    return { setCurrentPlayer, getCurrentPlayer, getNextPlayer, nextTurn };
+    return {
+        setCurrentPlayer,
+        getCurrentPlayer,
+        getNextPlayer,
+        nextTurn,
+        getName,
+        getSign,
+    };
 }
 
-//IIFE
+//IIFE - start
 const GameController = (() => {
-    //start
+    let displayController = DisplayController(),
+        p1,
+        p2,
+        gameBoard,
+        scoreBoard,
+        playerRotation;
 
-    //display
-    let displayController = DisplayController();
-    //player
-    let p1 = Player(
+    //every time start button is clicked
+    displayController.getStartElement().addEventListener('click', function () {
+        //creates players, gameBoard, and scoreboard instances
+        p1 = Player(
             '1',
             displayController.getP1Name(),
             displayController.getP1Sign()
-        ),
+        );
         p2 = Player(
             '2',
             displayController.getP2Name(),
             displayController.getP2Sign()
         );
-    //gameboard
-    let gameBoard = Gameboard();
-    //scoreboard
-    let scoreBoard = Scoreboard();
+        gameBoard = Gameboard();
+        scoreBoard = Scoreboard();
+        playerRotation = PlayerRotation(p1, p2); //player rotation, pass players
+        playerRotation.setCurrentPlayer(); //set which player got X - first
+        displayController.setPlayerTurn(playerRotation.getName()); //update display - whose turn is it
+    });
 
-    //player rotation, pass players
-    let playerRotation = PlayerRotation(p1, p2);
-    //set which player gets X - first
-    playerRotation.setCurrentPlayer();
-    displayController.setPlayerTurn(
-        playerRotation.getCurrentPlayer().getName()
-    );
     let game = document.querySelector('.game');
     //give tiles event listeners
     let tiles = document.querySelectorAll('.tile');
     tiles.forEach((tile) => {
         tile.addEventListener('click', (e) => {
-            //give board array corres sign
-            //pass current player sign and index
-            gameBoard.setBoard(
-                playerRotation.getCurrentPlayer().getSign(),
-                tile.dataset.index
-            );
+            gameBoard.setBoard(playerRotation.getSign(), tile.dataset.index); //give current index/tile the player's sign
+            gameBoard.render(); //render the table
+            tile.classList.add('taken'); //add taken class
 
-            //render the table
-            gameBoard.render();
-            //add taken class
-            tile.classList.add('taken');
             //check if theres winner
             let signWinner = checkWin(gameBoard.getBoard());
-
-            //display winner - console
-            //display tie as winner
             if (signWinner == 'tie') {
                 displayController.setScore(scoreBoard.addTie());
                 displayController.displayWinner(
@@ -258,7 +260,7 @@ const GameController = (() => {
     const restart = document.querySelector('.restart');
     restart.addEventListener('click', () => {
         displayController.restart();
-        scoreBoard.resetScoreBoard();
+        scoreBoard.reset();
         displayController.setScore({ player: 'tie', value: 0 });
         displayController.setScore({ player: '1', value: 0 });
         displayController.setScore({ player: '2', value: 0 });
@@ -283,6 +285,7 @@ const GameController = (() => {
 })();
 
 function DisplayController() {
+    //menu elements
     const start = document.querySelector('#start-button');
     const menu = document.querySelector('.menu');
     const gameBoard = document.querySelector('.gameboard');
@@ -291,6 +294,7 @@ function DisplayController() {
     const p1Sign = 'O';
     const p2Sign = 'X';
 
+    //game elements
     const p1GameName = gameBoard.querySelector('.p1');
     const p2GameName = gameBoard.querySelector('.p2');
     const round = gameBoard.querySelector('.round');
@@ -306,7 +310,7 @@ function DisplayController() {
         p2GameName.textContent = `P2: ${p2MenuName.value}`;
     });
 
-    const restart = () => {
+    const reset = () => {
         menu.classList.toggle('disable');
         gameBoard.classList.toggle('disable');
     };
@@ -327,6 +331,11 @@ function DisplayController() {
         return p2Sign;
     };
 
+    const getStartElement = () => {
+        return start;
+    };
+
+    //accepts object
     const setScore = (score) => {
         if (score.player === 'tie') {
             tieScore.textContent = score.value;
@@ -338,7 +347,6 @@ function DisplayController() {
     };
 
     const setPlayerTurn = (player) => {
-        console.log(player);
         playerTurn.textContent = `${player}'s turn`;
     };
 
@@ -358,7 +366,8 @@ function DisplayController() {
         setScore,
         setPlayerTurn,
         displayWinner,
-        restart,
+        reset,
+        getStartElement,
     };
 }
 
