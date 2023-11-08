@@ -146,6 +146,10 @@ function PlayerRotation(p1, p2) {
         return currentPlayer.getSign();
     };
 
+    const getPlayerNo = () => {
+        return currentPlayer.getPlayerNo();
+    };
+
     const getCurrentPlayer = () => {
         return currentPlayer;
     };
@@ -165,6 +169,7 @@ function PlayerRotation(p1, p2) {
         nextTurn,
         getName,
         getSign,
+        getPlayerNo,
     };
 }
 
@@ -175,7 +180,7 @@ const GameController = (() => {
         p2,
         gameBoard,
         scoreBoard,
-        playerRotation;
+        currentPlayer;
 
     //every time start button is clicked
     displayController.getStartElement().addEventListener('click', function () {
@@ -192,9 +197,9 @@ const GameController = (() => {
         );
         gameBoard = Gameboard();
         scoreBoard = Scoreboard();
-        playerRotation = PlayerRotation(p1, p2); //player rotation, pass players
-        playerRotation.setCurrentPlayer(); //set which player got X - first
-        displayController.setPlayerTurn(playerRotation.getName()); //update display - whose turn is it
+        currentPlayer = PlayerRotation(p1, p2); //player rotation, pass players
+        currentPlayer.setCurrentPlayer(); //set which player got X - first
+        displayController.setPlayerTurn(currentPlayer.getName()); //update display - whose turn is it
     });
 
     let game = document.querySelector('.game');
@@ -202,47 +207,34 @@ const GameController = (() => {
     let tiles = document.querySelectorAll('.tile');
     tiles.forEach((tile) => {
         tile.addEventListener('click', (e) => {
-            gameBoard.setBoard(playerRotation.getSign(), tile.dataset.index); //give current index/tile the player's sign
+            gameBoard.setBoard(currentPlayer.getSign(), tile.dataset.index); //give current index/tile the player's sign
             gameBoard.render(); //render the table
             tile.classList.add('taken'); //add taken class
 
             //check if theres winner
             let signWinner = checkWin(gameBoard.getBoard());
             if (signWinner == 'tie') {
-                displayController.setScore(scoreBoard.addTie());
-                displayController.displayWinner(
-                    'tie',
-                    playerRotation.getCurrentPlayer().getName()
-                );
-
-                game.classList.add('taken');
-                //reset
-                // gameBoard.resetBoard();
-                //playerRotation.setCurrentPlayer();
+                displayController.setScore(scoreBoard.addTie()); //increment tie
+                displayController.displayWinner('tie', currentPlayer.getName());
+                game.classList.add('taken'); //make whole game unclickable
             } else if (signWinner) {
-                //update scoring
-                if (playerRotation.getCurrentPlayer().getPlayerNo() === '1') {
-                    displayController.setScore(scoreBoard.addP1());
+                if (currentPlayer.getPlayerNo() === '1') {
+                    displayController.setScore(scoreBoard.addP1()); //increment p1 score
                     displayController.displayWinner(
                         '1',
-                        playerRotation.getCurrentPlayer().getName()
+                        currentPlayer.getName()
                     );
                 } else {
-                    displayController.setScore(scoreBoard.addP2());
+                    displayController.setScore(scoreBoard.addP2()); //increment p1 score
                     displayController.displayWinner(
                         '2',
-                        playerRotation.getCurrentPlayer().getName()
+                        currentPlayer.getName()
                     );
                 }
-                //reset
-                //gameBoard.resetBoard();
-                //playerRotation.setCurrentPlayer();
                 game.classList.add('taken');
             } else {
-                playerRotation.nextTurn();
-                displayController.setPlayerTurn(
-                    playerRotation.getCurrentPlayer().getName()
-                );
+                currentPlayer.nextTurn(); //change current player
+                displayController.setPlayerTurn(currentPlayer.getName()); //display current player
             }
         });
     });
@@ -250,15 +242,14 @@ const GameController = (() => {
     const reset = document.querySelector('.reset');
     reset.addEventListener('click', () => {
         gameBoard.resetBoard();
-        playerRotation.setCurrentPlayer();
-        displayController.setPlayerTurn(
-            playerRotation.getCurrentPlayer().getName()
-        );
+        currentPlayer.setCurrentPlayer();
+        displayController.setPlayerTurn(currentPlayer.getName());
         game.classList.remove('taken');
     });
 
     const restart = document.querySelector('.restart');
-    restart.addEventListener('click', () => {
+
+    /*    restart.addEventListener('click', () => {
         displayController.restart();
         scoreBoard.reset();
         displayController.setScore({ player: 'tie', value: 0 });
@@ -277,11 +268,11 @@ const GameController = (() => {
             displayController.getP2Name(),
             displayController.getP2Sign()
         );
-        playerRotation.setCurrentPlayer();
+        currentPlayer.setCurrentPlayer();
         displayController.setPlayerTurn(
-            playerRotation.getCurrentPlayer().getName()
+            currentPlayer.getCurrentPlayer().getName()
         );
-    });
+    }); */
 })();
 
 function DisplayController() {
