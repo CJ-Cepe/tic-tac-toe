@@ -110,9 +110,7 @@ function checkWin(board) {
 
     for (let i = 0; i < winningCombinations.length; i++) {
         let [a, b, c] = winningCombinations[i];
-        console.log(board[a], board[b], board[c]);
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            console.log('same');
             return board[a];
         }
     }
@@ -180,7 +178,8 @@ const GameController = (() => {
         p2,
         gameBoard,
         scoreBoard,
-        currentPlayer;
+        currentPlayer,
+        game = displayController.getGameElement();
 
     //every time start button is clicked
     displayController.getStartElement().addEventListener('click', function () {
@@ -200,9 +199,10 @@ const GameController = (() => {
         currentPlayer = PlayerRotation(p1, p2); //player rotation, pass players
         currentPlayer.setCurrentPlayer(); //set which player got X - first
         displayController.setPlayerTurn(currentPlayer.getName()); //update display - whose turn is it
+        gameBoard.resetBoard();
+        game.classList.remove('taken');
     });
 
-    let game = document.querySelector('.game');
     //give tiles event listeners
     let tiles = document.querySelectorAll('.tile');
     tiles.forEach((tile) => {
@@ -248,31 +248,9 @@ const GameController = (() => {
     });
 
     const restart = document.querySelector('.restart');
-
-    /*    restart.addEventListener('click', () => {
-        displayController.restart();
-        scoreBoard.reset();
-        displayController.setScore({ player: 'tie', value: 0 });
-        displayController.setScore({ player: '1', value: 0 });
-        displayController.setScore({ player: '2', value: 0 });
-        gameBoard.resetBoard();
-
-        game.classList.remove('taken');
-        p1 = Player(
-            '1',
-            displayController.getP1Name(),
-            displayController.getP1Sign()
-        );
-        p2 = Player(
-            '2',
-            displayController.getP2Name(),
-            displayController.getP2Sign()
-        );
-        currentPlayer.setCurrentPlayer();
-        displayController.setPlayerTurn(
-            currentPlayer.getCurrentPlayer().getName()
-        );
-    }); */
+    restart.addEventListener('click', () => {
+        displayController.reset();
+    });
 })();
 
 function DisplayController() {
@@ -293,12 +271,17 @@ function DisplayController() {
     const p2Score = gameBoard.querySelector('.p2-score');
     const tieScore = gameBoard.querySelector('.tie-score');
     const playerTurn = gameBoard.querySelector('.turn');
+    const game = gameBoard.querySelector('.game');
 
     start.addEventListener('click', () => {
         menu.classList.toggle('disable');
         gameBoard.classList.toggle('disable');
         p1GameName.textContent = `P1: ${P1MenuName.value}`;
         p2GameName.textContent = `P2: ${p2MenuName.value}`;
+        p1Score.textContent = '0';
+        p2Score.textContent = '0';
+        tieScore.textContent = '0';
+        round.textContent = '0';
     });
 
     const reset = () => {
@@ -324,6 +307,10 @@ function DisplayController() {
 
     const getStartElement = () => {
         return start;
+    };
+
+    const getGameElement = () => {
+        return game;
     };
 
     //accepts object
@@ -359,6 +346,7 @@ function DisplayController() {
         displayWinner,
         reset,
         getStartElement,
+        getGameElement,
     };
 }
 
