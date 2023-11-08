@@ -16,7 +16,7 @@ function Scoreboard() {
 
     //setters, trying different forms of function
     const addRound = () => {
-        round++;
+        return ++round;
     };
     const addP1 = () => {
         return { player: '1', value: ++p1 }; //return objects
@@ -27,13 +27,6 @@ function Scoreboard() {
     function addTie() {
         return { player: 'tie', value: ++tie }; //return objects
     }
-
-    const reset = () => {
-        round = 0;
-        p1 = 0;
-        p2 = 0;
-        tie = 0;
-    };
 
     //getters
     const getRound = () => round;
@@ -50,7 +43,6 @@ function Scoreboard() {
         getP1,
         getP2,
         getTie,
-        reset,
     };
 }
 
@@ -244,6 +236,9 @@ const GameController = (() => {
         gameBoard.resetBoard();
         currentPlayer.setCurrentPlayer();
         displayController.setPlayerTurn(currentPlayer.getName());
+        if (game.classList.contains('taken')) {
+            displayController.setRound(scoreBoard.addRound());
+        }
         game.classList.remove('taken');
     });
 
@@ -324,6 +319,10 @@ function DisplayController() {
         }
     };
 
+    const setRound = (value) => {
+        round.textContent = value;
+    };
+
     const setPlayerTurn = (player) => {
         playerTurn.textContent = `${player}'s turn`;
     };
@@ -343,6 +342,7 @@ function DisplayController() {
         getP2Sign,
         setScore,
         setPlayerTurn,
+        setRound,
         displayWinner,
         reset,
         getStartElement,
