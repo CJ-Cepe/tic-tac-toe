@@ -55,6 +55,14 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
+
+    text-shadow: 2px 2px 0px rgba(220, 74, 243, 1),
+        4px 4px 0px rgba(134, 250, 147, 1), 0px 0px 10px rgba(0, 0, 0, 1);
+}
+
+.menu > h1:hover {
+    text-shadow: 4px 4px 0px rgba(220, 74, 243, 1),
+        6px 6px 0px rgba(134, 250, 147, 1), 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .menu > div:nth-child(2) {
@@ -81,9 +89,17 @@ body {
     align-self: center;
 
     background-color: var(--purple1);
+    transition: 0.2s;
     box-shadow: 1px 1px 11px 4px rgba(102, 193, 242, 1);
     -webkit-box-shadow: 1px 1px 11px 4px rgba(102, 193, 242, 1);
     -moz-box-shadow: 1px 1px 11px 4px rgba(102, 193, 242, 1);
+}
+
+.menu-sign:hover {
+    background-color: var(--purple2);
+    box-shadow: 1px 1px 21px 4px rgba(102, 193, 242, 1);
+    -webkit-box-shadow: 1px 1px 21px 4px rgba(102, 193, 242, 1);
+    -moz-box-shadow: 1px 1px 21px 4px rgba(102, 193, 242, 1);
 }
 
 .x-sign {
@@ -155,9 +171,15 @@ input:focus {
 }
 
 .vs {
+    height: 100px;
+    align-self: center;
     font-size: 3rem;
     color: var(--blue1);
-    padding: 0 1rem 0 1rem;
+    padding: 0 1rem 0 1.5rem;
+}
+
+.vs:hover {
+    text-shadow: 0px 0px 5px var(--blue1);
 }
 
 @media only screen and (max-width: 600px) {
