@@ -25,7 +25,7 @@
 * {
     margin: 0;
     padding: 0;
-    /* outline: 1px solid red; */
+    /*  outline: 1px solid red; */
 }
 
 /*================== body =================*/
@@ -71,8 +71,27 @@ body {
     justify-content: space-evenly;
 }
 
-.menu > div:nth-child(2) button {
-    width: 100%;
+.menu-sign {
+    aspect-ratio: 1 / 1;
+    height: 50%;
+    font-size: 7rem;
+    padding-left: 1rem;
+    font-family: 'pixel', sans-serif;
+
+    align-self: center;
+
+    background-color: var(--purple1);
+    box-shadow: 1px 1px 11px 4px rgba(102, 193, 242, 1);
+    -webkit-box-shadow: 1px 1px 11px 4px rgba(102, 193, 242, 1);
+    -moz-box-shadow: 1px 1px 11px 4px rgba(102, 193, 242, 1);
+}
+
+.x-sign {
+    color: var(--pink1);
+}
+
+.o-sign {
+    color: var(--green1);
 }
 
 .menu > div:nth-child(2) img {
