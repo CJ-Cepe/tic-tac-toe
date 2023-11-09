@@ -353,14 +353,12 @@ function DisplayController() {
 /*================== Steps =================*/
 
 /*
-    1. update scoring
-    2. handle tie
-    3. handle switching of players
-    4. reposition render()
-    5. do set up form
-    6. setup start button
-    7. displayController
-    8. playerTurn
+    1. X and O in menu
+    2. when 3 match
+    3. add ai?
+    4. ui
+
+
 
 
 

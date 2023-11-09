@@ -1,5 +1,18 @@
+@font-face {
+    font-family: 'pixel';
+    src: url('assets/PKMN RBYGSC.ttf') format('truetype');
+}
+
 :root {
     font-style: 16;
+    --purple1: #190739;
+    --purple2: #100228;
+    --pink1: #dc4af3;
+    --green1: #86fa93;
+    --blue1: #66c1f2;
+    --white1: whitesmoke;
+    --white2: #e9fdff;
+    --black1: #02010f;
 }
 
 /*================== CSS reset =================*/
@@ -25,6 +38,9 @@ body {
 /*================== menu container =================*/
 .menu {
     height: 100%;
+    background-color: var(--purple2);
+    font-family: 'pixel', sans-serif;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,10 +48,13 @@ body {
 
 .menu > h1 {
     flex: 0.5;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    font-weight: 100;
+    color: var(--white1);
 
     display: flex;
     align-items: center;
+    text-align: center;
 }
 
 .menu > div:nth-child(2) {
@@ -61,19 +80,25 @@ body {
 }
 
 .menu > div:nth-child(2) label {
+    color: var(--green1);
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .menu > div:nth-child(2) label input {
-    margin-top: 1rem;
-    width: 100%;
-    font-size: 1.5rem;
-    border: none;
-    border-bottom: 1px solid black;
-    text-align: center;
+    font-size: 1rem;
+    font-family: 'pixel', sans-serif;
     font-style: italic;
+    text-align: center;
+    color: var(--pink1);
+    background-color: transparent;
+
+    width: 100%;
+    margin-top: 1rem;
+    border: none;
+    border-bottom: 2px solid rgba(233, 253, 255, 0.2);
 }
 
 .menu input:focus,
@@ -88,13 +113,31 @@ input:focus {
 }
 
 .menu > div:last-child button {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-family: 'pixel', sans-serif;
+    color: var(--blue1);
+    background-color: var(--black1);
+    border: 4px double;
+    transition: 0.1s;
+    border-radius: 5px;
+
     width: 150px;
-    height: 50px;
+    height: 55px;
+}
+
+.menu > div:last-child button:hover {
+    color: var(--white1);
+    background-color: var(--purple2);
+
+    border-top-color: var(--green1);
+    border-left-color: var(--green1);
+    border-right-color: var(--pink1);
+    border-bottom-color: var(--pink1);
 }
 
 .vs {
     font-size: 3rem;
+    color: var(--blue1);
     padding: 0 1rem 0 1rem;
 }
 
