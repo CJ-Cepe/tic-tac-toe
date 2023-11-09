@@ -279,6 +279,28 @@ function DisplayController() {
         round.textContent = '0';
     });
 
+    const menuSigns = Array.from(document.querySelectorAll('.menu-sign'));
+    for (let i = 0; i < 2; i++) {
+        menuSigns[i].addEventListener('click', () => {
+            menuSigns[0].classList.toggle('x-sign');
+            menuSigns[0].classList.toggle('o-sign');
+            menuSigns[1].classList.toggle('x-sign');
+            menuSigns[1].classList.toggle('o-sign');
+
+            if (menuSigns[0].classList.contains('x-sign')) {
+                menuSigns[0].textContent = 'X';
+                menuSigns[1].textContent = 'O';
+                p1Sign = 'X';
+                p2Sign = 'O';
+            } else if (menuSigns[0].classList.contains('o-sign')) {
+                menuSigns[0].textContent = 'O';
+                menuSigns[1].textContent = 'X';
+                p1Sign = 'O';
+                p2Sign = 'X';
+            }
+        });
+    }
+
     const reset = () => {
         menu.classList.toggle('disable');
         gameBoard.classList.toggle('disable');
