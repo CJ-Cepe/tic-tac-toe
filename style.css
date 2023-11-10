@@ -207,7 +207,7 @@ input:focus {
     display: grid;
     grid-template-areas: 'a e' 'b e' 'c e' 'd e';
     grid-template-columns: 0.8fr 1fr;
-    grid-template-rows: 0.3fr 0.3fr 1fr 0.2fr;
+    grid-template-rows: 0.3fr 0.2fr 0.5fr 0.2fr;
 }
 
 .gameboard > div:nth-child(1) {
@@ -220,20 +220,36 @@ input:focus {
 
 .gameboard > div:nth-child(2) {
     grid-area: b;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .gameboard > div:nth-child(3) {
     grid-area: c;
-    justify-self: center;
-    align-self: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .gameboard > div:nth-child(4) {
     grid-area: d;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: space-evenly;
 }
 
 .gameboard > .game-cont {
     grid-area: e;
+}
+
+/*======= h2 =======*/
+.gameboard h1 {
+    margin-top: 2rem;
 }
 
 /*================== turn =================*/
@@ -241,10 +257,9 @@ input:focus {
     color: var(--white1);
     background-color: var(--black1);
 
-    margin: 1rem 0 3rem 0;
     width: 70%;
-    border-radius: 25px;
-    justify-self: center;
+    height: 80%;
+    border-radius: 20px;
     border-right: var(--blue1) 7px solid;
     border-left: var(--blue1) 7px solid;
 
@@ -256,14 +271,13 @@ input:focus {
 .scoreboard {
     background-color: var(--black1);
     padding: 0 7% 0 7%;
+    width: 70%;
+    height: 90%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-
-    width: 70%;
-    height: 90%;
 }
 
 .scoreboard > h2 {
@@ -281,14 +295,8 @@ input:focus {
 }
 
 /*================== buttons =================*/
-.buttons-cont {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 .buttons-cont button {
-    height: 2rem;
+    height: 3rem;
     width: 7rem;
 }
 /*================== game board =================*/
