@@ -207,28 +207,28 @@ input:focus {
     display: grid;
     grid-template-areas: 'a e' 'b e' 'c e' 'd e';
     grid-template-columns: 0.8fr 1fr;
-    grid-template-rows: 0.2fr 0.3fr 1fr 0.2fr;
+    grid-template-rows: 0.3fr 0.3fr 1fr 0.2fr;
 }
 
-.gameboard > h1 {
+.gameboard > div:nth-child(1) {
     grid-area: a;
 
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.gameboard > .turn {
+.gameboard > div:nth-child(2) {
     grid-area: b;
 }
 
-.gameboard > .scoreboard {
+.gameboard > div:nth-child(3) {
     grid-area: c;
     justify-self: center;
     align-self: center;
 }
 
-.gameboard > .buttons-cont {
+.gameboard > div:nth-child(4) {
     grid-area: d;
 }
 
@@ -278,6 +278,18 @@ input:focus {
 
 .scoreboard .score {
     color: var(--green1);
+}
+
+/*================== buttons =================*/
+.buttons-cont {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.buttons-cont button {
+    height: 2rem;
+    width: 7rem;
 }
 /*================== game board =================*/
 .game {
