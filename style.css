@@ -296,8 +296,23 @@ input:focus {
 
 /*================== buttons =================*/
 .buttons-cont button {
+    aspect-ratio: 1.5 / 1;
     height: 3rem;
-    width: 7rem;
+    background-color: transparent;
+}
+
+.buttons-cont button img {
+    height: 100%;
+}
+
+.buttons-cont .restart > img {
+    filter: invert(100%) sepia(2%) saturate(13%) hue-rotate(111deg)
+        brightness(114%) contrast(92%);
+}
+
+.buttons-cont .reset > img {
+    filter: invert(78%) sepia(12%) saturate(5362%) hue-rotate(172deg)
+        brightness(101%) contrast(90%);
 }
 /*================== game board =================*/
 .game {
