@@ -200,7 +200,7 @@ input:focus {
 .gameboard {
     display: grid;
     grid-template-areas: 'a e' 'b e' 'c e' 'd e';
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.8fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1f;
 }
 
@@ -214,6 +214,8 @@ input:focus {
 
 .gameboard > .scoreboard {
     grid-area: c;
+    justify-self: center;
+    align-self: center;
 }
 
 .gameboard > .buttons-cont {
@@ -224,7 +226,36 @@ input:focus {
     grid-area: e;
 }
 /*================== score board =================*/
+.scoreboard {
+    font-family: 'pixel', sans-serif;
+    font-size: 1rem;
+    font-weight: 100;
+    color: var(--white1);
+    background-color: var(--black1);
+    padding: 0 7% 0 7%;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 70%;
+    height: 90%;
+}
+
+.scoreboard > h2 {
+    align-self: center;
+    color: var(--green1);
+    margin-bottom: 1rem;
+}
+
+.scoreboard .name {
+    color: var(--pink1);
+}
+
+.scoreboard .score {
+    color: var(--green1);
+}
 /*================== game board =================*/
 .game {
     height: 100%;

@@ -271,8 +271,8 @@ function DisplayController() {
     start.addEventListener('click', () => {
         menu.classList.toggle('disable');
         gameBoard.classList.toggle('disable');
-        p1GameName.textContent = `P1: ${P1MenuName.value}`;
-        p2GameName.textContent = `P2: ${p2MenuName.value}`;
+        p1GameName.textContent = `${P1MenuName.value}: `;
+        p2GameName.textContent = `${p2MenuName.value}: `;
         p1Score.textContent = '0';
         p2Score.textContent = '0';
         tieScore.textContent = '0';
