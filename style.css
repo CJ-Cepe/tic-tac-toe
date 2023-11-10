@@ -25,7 +25,7 @@
 * {
     margin: 0;
     padding: 0;
-    /*  outline: 1px solid red; */
+    outline: 1px solid red;
 }
 
 /*================== body =================*/
@@ -55,7 +55,10 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
+    transition: 0.1s ease-out;
 
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
     text-shadow: 2px 2px 0px rgba(220, 74, 243, 1),
         4px 4px 0px rgba(134, 250, 147, 1), 0px 0px 10px rgba(0, 0, 0, 1);
 }
@@ -193,49 +196,47 @@ input:focus {
         font-size: 1rem;
     }
 }
-/*================== main container =================*/
+/*================== Gameboard container =================*/
 .gameboard {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-areas: 'a e' 'b e' 'c e' 'd e';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1f;
 }
 
-.gameboard > div:nth-child(1) {
-    height: 15vh;
-    text-align: center;
+.gameboard > h1 {
+    grid-area: a;
 }
 
-.gameboard > div:nth-child(2) {
-    height: 65vh;
-
-    display: flex;
-    justify-content: center;
+.gameboard > .turn {
+    grid-area: b;
 }
 
-.gameboard > div:nth-child(3) {
-    height: 10vh;
-    text-align: center;
+.gameboard > .scoreboard {
+    grid-area: c;
 }
 
+.gameboard > .buttons-cont {
+    grid-area: d;
+}
+
+.gameboard > .game-cont {
+    grid-area: e;
+}
 /*================== score board =================*/
-.gameboard > div:nth-child(1) > div {
-    display: flex;
-}
-
-.gameboard > div:nth-child(1) > div div {
-    flex: 1;
-}
 
 /*================== game board =================*/
 .game {
-    aspect-ratio: 1 / 1;
     height: 100%;
+    aspect-ratio: 1 / 1;
     border: 2px solid black;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
-/*================== tiles =================*/
+/*======= tiles =======*/
+
 .tile {
     border: 1px solid gray;
 }
@@ -243,8 +244,8 @@ input:focus {
 .taken {
     pointer-events: none;
 }
-/*================== footer =================*/
 
+/*================== footer =================*/
 .disable {
     display: none;
 }

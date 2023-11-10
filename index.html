@@ -9,26 +9,26 @@
     </head>
     <body>
         <div class="gameboard main-cont disable">
-            <div>
-                <h1>Round <span class="round">#</span></h1>
-                <div>
-                    <div>
-                        <span class="name p1"> Player 1 name </span>
-                        <p class="p1-score">0</p>
-                    </div>
+            <h1>Round <span class="round">#</span></h1>
+            <div class="turn"></div>
+            <div class="scoreboard">
+                <h2>Score board</h2>
+                <span class="name p1">
+                    Player 1 <span class="p1-score">0</span>
+                </span>
 
-                    <div>
-                        <span class="name Tie"> Tie </span>
-                        <p class="tie-score">0</p>
-                    </div>
+                <span class="name Tie"> Tie </span>
+                <p class="tie-score">0</p>
 
-                    <div>
-                        <span class="name p2">Player 2 name</span>
-                        <p class="p2-score">0</p>
-                    </div>
-                </div>
+                <span class="name p2">Player 2 name</span>
+                <p class="p2-score">0</p>
             </div>
-            <div>
+            <div class="buttons-cont">
+                <button type="button" class="reset">Reset</button>
+                <button type="button" class="restart">Reset</button>
+            </div>
+
+            <div class="game-cont">
                 <div class="game">
                     <div class="tile" data-index="0"></div>
                     <div class="tile" data-index="1"></div>
@@ -41,9 +41,6 @@
                     <div class="tile" data-index="8"></div>
                 </div>
             </div>
-            <div class="turn"></div>
-            <button type="button" class="reset">Reset</button>
-            <button type="button" class="restart">Reset</button>
         </div>
         <div class="menu main-cont">
             <h1>Tic Tac Toe</h1>
