@@ -380,6 +380,12 @@ function DisplayController() {
     3. add ai?
     4. ui
 
+    5. fix query selectors
+    6. fix colors
+    7. tile flipping
+    8. responsive mode
+    
+
 
 
 
