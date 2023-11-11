@@ -273,6 +273,7 @@ function DisplayController() {
         gameBoard.classList.toggle('disable');
         p1GameName.textContent = `${P1MenuName.value}: `;
         p2GameName.textContent = `${p2MenuName.value}: `;
+        text-Content fix
         p1Score.textContent = '0';
         p2Score.textContent = '0';
         tieScore.textContent = '0';
