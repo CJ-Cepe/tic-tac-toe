@@ -371,7 +371,7 @@ function DisplayController() {
     };
 
     const setPlayerTurn = (player, sign) => {
-        playerTurn.textContent = `${player}'s turn`;
+        playerTurn.textContent = `${player}'s  Turn`;
         if (sign == 'X') {
             console.log(player, sign);
             playerTurn.style.color = '#dc4af3';
@@ -383,9 +383,9 @@ function DisplayController() {
 
     const displayWinner = (player, name) => {
         if (player === 'tie') {
-            playerTurn.textContent = "It's a Tie!!!!";
+            playerTurn.textContent = "It's a TIE !";
         } else {
-            playerTurn.textContent = `${name} Wins!!!`;
+            playerTurn.textContent = `${name} WINS !`;
         }
     };
 
