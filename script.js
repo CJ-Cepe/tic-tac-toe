@@ -9,7 +9,7 @@ function Player(playerNo, name, sign) {
 
 //factory function - 1 instances each game
 function Scoreboard() {
-    let round = 0,
+    let round = 1,
         p1 = 0,
         p2 = 0,
         tie = 0;
@@ -273,7 +273,7 @@ function DisplayController() {
     start.addEventListener('click', () => {
         menu.classList.toggle('disable');
         gameBoard.classList.toggle('disable');
-        console.log(String(p1GameName.value).length);
+
         if (p1MenuName.value.length == 0) {
             p1MenuName.value = 'Player 1';
         }
@@ -290,7 +290,7 @@ function DisplayController() {
         p1Score.textContent = '0';
         p2Score.textContent = '0';
         tieScore.textContent = '0';
-        round.textContent = '0';
+        round.textContent = '1';
     });
 
     const menuSigns = Array.from(document.querySelectorAll('.menu-sign'));
@@ -402,6 +402,9 @@ function DisplayController() {
     8. responsive mode
     9. fix name/ first turn /
     10. fix sign color /
+    11. fix input max and min length /
+    12. fix round
+    13. fix displayed name
     
 
 
