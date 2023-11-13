@@ -353,6 +353,14 @@ input:focus {
     pointer-events: none;
 }
 
+.X {
+    color: var(--pink1);
+}
+
+.O {
+    color: var(--green1);
+}
+
 /*================== footer =================*/
 .disable {
     display: none;

@@ -202,6 +202,7 @@ const GameController = (() => {
             gameBoard.setBoard(currentPlayer.getSign(), tile.dataset.index); //give current index/tile the player's sign
             gameBoard.render(); //render the table
             tile.classList.add('taken'); //add taken class
+            tile.classList.add(`${currentPlayer.getSign()}`);
 
             //check if theres winner
             let signWinner = checkWin(gameBoard.getBoard());
