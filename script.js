@@ -431,7 +431,7 @@ function DisplayController() {
 
 /*  
     - responsive
-    - tile flip
-    - when 3 match
+    - tile flip /
+    - when 3 match /
     - add ai
 */
