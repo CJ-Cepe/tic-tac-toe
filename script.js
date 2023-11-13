@@ -383,7 +383,7 @@ function DisplayController() {
 
     const displayWinner = (player, name) => {
         if (player === 'tie') {
-            playerTurn.textContent = '-- TIE --';
+            playerTurn.textContent = "It's a TIE !";
             playerTurn.style.color = 'var(--white1)';
         } else {
             playerTurn.textContent = `${name} WINS !`;
