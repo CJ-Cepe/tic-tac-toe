@@ -422,7 +422,7 @@ function DisplayController() {
     11. fix input max and min length /
     12. fix round /
     13. fix displayed name / 
-    14. colored displayed name
+    14. colored displayed name / 
     15. design button
 
     

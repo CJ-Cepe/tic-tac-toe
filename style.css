@@ -301,9 +301,20 @@ input:focus {
 
 /*================== buttons =================*/
 .buttons-cont button {
-    aspect-ratio: 1.5 / 1;
-    height: 3rem;
+    aspect-ratio: 1 / 1;
+    height: 4.5rem;
     background-color: transparent;
+    border: none;
+    padding: 0.2rem;
+}
+
+.buttons-cont button:hover {
+    background-color: var(--purple1);
+    border: double 3px var(--pink1);
+}
+
+.buttons-cont button.reset {
+    padding-top: 0.5rem;
 }
 
 .buttons-cont button img {
