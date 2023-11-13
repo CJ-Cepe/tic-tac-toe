@@ -457,9 +457,10 @@ input:focus {
 
 @media only screen and (max-width: 750px) {
     .gameboard {
+        gap: 10px;
         grid-template-areas: 'a' 'b' 'c' 'd' 'e';
         grid-template-columns: 1fr;
-        grid-template-rows: 0.15fr 0.2fr 0.1fr 0.8fr 0.2fr;
+        grid-template-rows: 1fr 1.2fr 0.8fr 1fr 1fr;
     }
 
     .gameboard > div:nth-child(1) {
@@ -472,7 +473,6 @@ input:focus {
 
     .gameboard > div:nth-child(3) {
         grid-area: b;
-        padding-top: 5%;
     }
 
     .gameboard > div:nth-child(4) {
@@ -486,13 +486,15 @@ input:focus {
 
     .gameboard h1 {
         font-size: 1.3rem;
+        margin-top: 0;
+        padding: 4%;
     }
 
     .scoreboard {
         display: grid;
         grid-template-areas: 'a b c';
         justify-content: space-between;
-        height: 90%;
+        height: 100%;
         font-size: 0.9rem;
     }
 
@@ -515,12 +517,12 @@ input:focus {
         height: 100%;
         width: 70%;
         font-size: 0.8rem;
-        margin-top: 5%;
+        padding: 1%;
     }
 
     .game {
         height: auto;
-        width: 85%;
+        width: min(400px, 85%);
     }
 
     .tile-back {
@@ -530,5 +532,13 @@ input:focus {
 
     .buttons-cont button {
         height: 3.5rem;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .gameboard {
+        gap: 20px;
+        grid-template-areas: 'a' 'b' 'c' 'd' 'e';
+        grid-template-rows: 0.5fr 0.6fr 0.3fr 1fr 0.7fr;
     }
 }
