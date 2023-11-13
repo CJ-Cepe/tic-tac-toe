@@ -369,7 +369,7 @@ function DisplayController() {
         if (player === 'tie') {
             playerTurn.textContent = "It's a Tie!!!!";
         } else {
-            playerTurn.textContent = `P${player} ${name} Wins!!!`;
+            playerTurn.textContent = `${name} Wins!!!`;
         }
     };
 
@@ -403,7 +403,7 @@ function DisplayController() {
     9. fix name/ first turn /
     10. fix sign color /
     11. fix input max and min length /
-    12. fix round
+    12. fix round /
     13. fix displayed name
     
 
