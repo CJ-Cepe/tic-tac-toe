@@ -374,16 +374,17 @@ function DisplayController() {
         playerTurn.textContent = `${player}'s  Turn`;
         if (sign == 'X') {
             console.log(player, sign);
-            playerTurn.style.color = '#dc4af3';
+            playerTurn.style.color = 'var(--pink1)';
         } else {
             console.log(player, sign);
-            playerTurn.style.color = '#86fa93';
+            playerTurn.style.color = 'var(--green1)';
         }
     };
 
     const displayWinner = (player, name) => {
         if (player === 'tie') {
-            playerTurn.textContent = "It's a TIE !";
+            playerTurn.textContent = '-- TIE --';
+            playerTurn.style.color = 'var(--white1)';
         } else {
             playerTurn.textContent = `${name} WINS !`;
         }
