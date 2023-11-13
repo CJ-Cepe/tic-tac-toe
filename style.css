@@ -348,15 +348,13 @@ input:focus {
 }
 /*======= tiles =======*/
 .tile {
-    /*  background-color: var(--purple1); */
     aspect-ratio: 1 / 1;
     height: 100%;
     border-radius: 5px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 7rem;
+    position: relative;
+    float: left;
+    perspective: 500px;
 }
 
 .taken {
@@ -371,13 +369,7 @@ input:focus {
     color: var(--green1);
 }
 
-/*======= DIVISION =======*/
-.tile {
-    position: relative;
-    float: left;
-    perspective: 500px;
-}
-
+/*======= tile rotation =======*/
 .tile-content {
     position: absolute;
     width: 100%;
@@ -385,11 +377,6 @@ input:focus {
     transition: transform 1s;
     transform-style: preserve-3d;
 }
-
-/* .tile:toggle .tile-content {
-    transform: rotateY(180deg);
-    transition: transform 0.5s;
-} */
 
 .tile-front,
 .tile-back {
