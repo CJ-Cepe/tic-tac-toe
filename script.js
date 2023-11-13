@@ -72,13 +72,16 @@ function Gameboard() {
     function updateTiles(task) {
         let tiles = document.querySelectorAll('.tile');
         tiles.forEach((tile) => {
+            let backTile = tile.querySelector('.tile-back');
             if (task === 'render') {
                 if (!tile.classList.contains('taken')) {
-                    tile.textContent = board[tile.dataset.index];
+                    backTile.textContent = board[tile.dataset.index];
                 }
             } else if (task === 'reset') {
                 if (!tile.classList.remove('taken')) {
-                    tile.textContent = board[tile.dataset.index];
+                    backTile.textContent = board[tile.dataset.index];
+                    tile.querySelector('.tile-content').style.transform =
+                        'rotateY(0deg)';
                     tile.classList.remove('O', 'X');
                 }
             }
@@ -207,6 +210,10 @@ const GameController = (() => {
             gameBoard.render(); //render the table
             tile.classList.add('taken'); //add taken class
             tile.classList.add(`${currentPlayer.getSign()}`);
+            tile.querySelector('.tile-content').style.transform =
+                'rotateY(180deg)';
+            tile.querySelector('.tile-content').style.transition =
+                'transform 0.5s';
 
             //check if theres winner
             let signWinner = checkWin(gameBoard.getBoard());
