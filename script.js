@@ -262,8 +262,8 @@ function DisplayController() {
     const p1GameName = gameBoard.querySelector('.p1');
     const p2GameName = gameBoard.querySelector('.p2');
     const round = gameBoard.querySelector('.round');
-    const p1Score = gameBoard.querySelector('.p1-score');
-    const p2Score = gameBoard.querySelector('.p2-score');
+    const p1Score = document.createElement('span');
+    const p2Score = document.createElement('span');
     const tieScore = gameBoard.querySelector('.tie-score');
     const playerTurn = gameBoard.querySelector('.turn');
     const game = gameBoard.querySelector('.game');
@@ -273,7 +273,10 @@ function DisplayController() {
         gameBoard.classList.toggle('disable');
         p1GameName.textContent = `${P1MenuName.value}: `;
         p2GameName.textContent = `${p2MenuName.value}: `;
-        text-Content fix
+        p1GameName.appendChild(p1Score);
+        p2GameName.appendChild(p2Score);
+        p1Score.classList.add('p1-score', 'score');
+        p2Score.classList.add('p2-score', 'score');
         p1Score.textContent = '0';
         p2Score.textContent = '0';
         tieScore.textContent = '0';
