@@ -430,8 +430,7 @@ function DisplayController() {
 /*================== To Do =================*/
 
 /*  
-    - responsive
-    - tile flip /
-    - when 3 match /
+    - tiles on hover
+    - icons
     - add ai
 */
