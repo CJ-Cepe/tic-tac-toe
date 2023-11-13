@@ -256,8 +256,8 @@ function DisplayController() {
     const gameBoard = document.querySelector('.gameboard');
     const P1MenuName = document.querySelector('#p1-name');
     const p2MenuName = document.querySelector('#p2-name');
-    const p1Sign = 'O';
-    const p2Sign = 'X';
+    let p1Sign = 'X';
+    let p2Sign = 'O';
 
     //game elements
     const p1GameName = gameBoard.querySelector('.p1');
@@ -297,11 +297,13 @@ function DisplayController() {
                 menuSigns[1].textContent = 'O';
                 p1Sign = 'X';
                 p2Sign = 'O';
+                console.log(`P1: ${p1Sign} P2: ${p2Sign}`);
             } else if (menuSigns[0].classList.contains('o-sign')) {
                 menuSigns[0].textContent = 'O';
                 menuSigns[1].textContent = 'X';
                 p1Sign = 'O';
                 p2Sign = 'X';
+                console.log(`P1: ${p1Sign} P2: ${p2Sign}`);
             }
         });
     }
@@ -385,10 +387,11 @@ function DisplayController() {
     3. add ai?
     4. ui
 
-    5. fix query selectors
-    6. fix colors
+    5. fix query selectors /
+    6. fix colors /
     7. tile flipping
     8. responsive mode
+    9. fix name/ first turn
     
 
 
