@@ -255,7 +255,7 @@ function DisplayController() {
     const start = document.querySelector('#start-button');
     const menu = document.querySelector('.menu');
     const gameBoard = document.querySelector('.gameboard');
-    const P1MenuName = document.querySelector('#p1-name');
+    const p1MenuName = document.querySelector('#p1-name');
     const p2MenuName = document.querySelector('#p2-name');
     let p1Sign = 'X';
     let p2Sign = 'O';
@@ -273,7 +273,15 @@ function DisplayController() {
     start.addEventListener('click', () => {
         menu.classList.toggle('disable');
         gameBoard.classList.toggle('disable');
-        p1GameName.textContent = `${P1MenuName.value}: `;
+        console.log(String(p1GameName.value).length);
+        if (p1MenuName.value.length == 0) {
+            p1MenuName.value = 'Player 1';
+        }
+        if (p2MenuName.value.length == 0) {
+            p2MenuName.value = 'Player 2';
+        }
+
+        p1GameName.textContent = `${p1MenuName.value}: `;
         p2GameName.textContent = `${p2MenuName.value}: `;
         p1GameName.appendChild(p1Score);
         p2GameName.appendChild(p2Score);
@@ -315,7 +323,7 @@ function DisplayController() {
     };
 
     const getP1Name = () => {
-        return P1MenuName.value;
+        return p1MenuName.value;
     };
 
     const getP2Name = () => {
@@ -392,7 +400,8 @@ function DisplayController() {
     6. fix colors /
     7. tile flipping
     8. responsive mode
-    9. fix name/ first turn
+    9. fix name/ first turn /
+    10. fix sign color /
     
 
 
