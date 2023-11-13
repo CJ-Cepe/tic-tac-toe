@@ -79,6 +79,7 @@ function Gameboard() {
             } else if (task === 'reset') {
                 if (!tile.classList.remove('taken')) {
                     tile.textContent = board[tile.dataset.index];
+                    tile.classList.remove('O', 'X');
                 }
             }
         });
