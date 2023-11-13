@@ -191,7 +191,10 @@ const GameController = (() => {
         scoreBoard = Scoreboard();
         currentPlayer = PlayerRotation(p1, p2); //player rotation, pass players
         currentPlayer.setCurrentPlayer(); //set which player got X - first
-        displayController.setPlayerTurn(currentPlayer.getName()); //update display - whose turn is it
+        displayController.setPlayerTurn(
+            currentPlayer.getName(),
+            currentPlayer.getSign()
+        ); //update display - whose turn is it
         gameBoard.resetBoard();
         game.classList.remove('taken');
     });
@@ -228,7 +231,10 @@ const GameController = (() => {
                 game.classList.add('taken');
             } else {
                 currentPlayer.nextTurn(); //change current player
-                displayController.setPlayerTurn(currentPlayer.getName()); //display current player
+                displayController.setPlayerTurn(
+                    currentPlayer.getName(),
+                    currentPlayer.getSign()
+                ); //display current player
             }
         });
     });
@@ -237,7 +243,10 @@ const GameController = (() => {
     reset.addEventListener('click', () => {
         gameBoard.resetBoard();
         currentPlayer.setCurrentPlayer();
-        displayController.setPlayerTurn(currentPlayer.getName());
+        displayController.setPlayerTurn(
+            currentPlayer.getName(),
+            currentPlayer.getSign()
+        );
         if (game.classList.contains('taken')) {
             displayController.setRound(scoreBoard.addRound());
         }
@@ -361,8 +370,15 @@ function DisplayController() {
         round.textContent = value;
     };
 
-    const setPlayerTurn = (player) => {
+    const setPlayerTurn = (player, sign) => {
         playerTurn.textContent = `${player}'s turn`;
+        if (sign == 'X') {
+            console.log(player, sign);
+            playerTurn.style.color = '#dc4af3';
+        } else {
+            console.log(player, sign);
+            playerTurn.style.color = '#86fa93';
+        }
     };
 
     const displayWinner = (player, name) => {
@@ -404,7 +420,10 @@ function DisplayController() {
     10. fix sign color /
     11. fix input max and min length /
     12. fix round /
-    13. fix displayed name
+    13. fix displayed name / 
+    14. colored displayed name
+    15. design button
+
     
 
 
