@@ -405,32 +405,11 @@ function DisplayController() {
     };
 }
 
-/*================== Steps =================*/
+/*================== To Do =================*/
 
-/*
-    1. X and O in menu
-    2. when 3 match
-    3. add ai?
-    4. ui
-
-    5. fix query selectors /
-    6. fix colors /
-    7. tile flipping
-    8. responsive mode
-    9. fix name/ first turn /
-    10. fix sign color /
-    11. fix input max and min length /
-    12. fix round /
-    13. fix displayed name / 
-    14. colored displayed name / 
-    15. design button
-
-    
-
-
-
-
-
-
-
+/*  
+    - responsive
+    - tile flip
+    - when 3 match
+    - add ai
 */
