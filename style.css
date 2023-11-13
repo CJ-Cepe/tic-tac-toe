@@ -400,3 +400,18 @@ input:focus {
 .disable {
     display: none;
 }
+
+.win {
+    transition: 0.5s;
+    background-color: var(--purple2);
+    animation: pulse-animation 1s infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        border: 5px solid rgba(255, 255, 255, 1);
+    }
+    100% {
+        border: 2px solid rgba(255, 255, 255, 0);
+    }
+}

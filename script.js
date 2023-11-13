@@ -80,6 +80,7 @@ function Gameboard() {
             } else if (task === 'reset') {
                 if (!tile.classList.remove('taken')) {
                     backTile.textContent = board[tile.dataset.index];
+                    backTile.classList.remove('win');
                     tile.querySelector('.tile-content').style.transform =
                         'rotateY(0deg)';
                     tile.classList.remove('O', 'X');
@@ -107,6 +108,20 @@ function checkWin(board) {
     for (let i = 0; i < winningCombinations.length; i++) {
         let [a, b, c] = winningCombinations[i];
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            let tiles = Array.from(document.querySelectorAll('.tile'));
+
+            setTimeout(function () {
+                tiles[a].querySelector('.tile-back').classList.add('win');
+            }, 300);
+
+            setTimeout(function () {
+                tiles[b].querySelector('.tile-back').classList.add('win');
+            }, 600);
+
+            setTimeout(function () {
+                tiles[c].querySelector('.tile-back').classList.add('win');
+            }, 900);
+
             return board[a];
         }
     }
