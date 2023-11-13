@@ -425,3 +425,110 @@ input:focus {
         border: 2px solid rgba(255, 255, 255, 0);
     }
 }
+
+@media only screen and (max-width: 1200px) {
+    .gameboard {
+        grid-template-columns: 0.6fr 1fr;
+    }
+
+    .turn {
+        width: 85%;
+    }
+    .scoreboard {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .gameboard {
+        grid-template-columns: 0.9fr 1fr;
+    }
+
+    .game {
+        height: auto;
+        width: 90%;
+    }
+
+    .tile-back {
+        font-size: 5rem;
+        padding-left: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .gameboard {
+        grid-template-areas: 'a' 'b' 'c' 'd' 'e';
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.15fr 0.2fr 0.1fr 0.8fr 0.2fr;
+    }
+
+    .gameboard > div:nth-child(1) {
+        grid-area: a;
+    }
+
+    .gameboard > div:nth-child(2) {
+        grid-area: c;
+    }
+
+    .gameboard > div:nth-child(3) {
+        grid-area: b;
+        padding-top: 5%;
+    }
+
+    .gameboard > div:nth-child(4) {
+        grid-area: e;
+    }
+
+    .gameboard > div:nth-child(5) {
+        grid-area: d;
+        padding-top: 5%;
+    }
+
+    .gameboard h1 {
+        font-size: 1.3rem;
+    }
+
+    .scoreboard {
+        display: grid;
+        grid-template-areas: 'a b c';
+        justify-content: space-between;
+        height: 90%;
+        font-size: 0.9rem;
+    }
+
+    .scoreboard .Tie {
+        grid-area: b;
+    }
+
+    .scoreboard span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .scoreboard > h2 {
+        display: none;
+    }
+
+    .turn {
+        height: 100%;
+        width: 70%;
+        font-size: 0.8rem;
+        margin-top: 5%;
+    }
+
+    .game {
+        height: auto;
+        width: 85%;
+    }
+
+    .tile-back {
+        font-size: 4rem;
+        padding-left: 0.6rem;
+    }
+
+    .buttons-cont button {
+        height: 3.5rem;
+    }
+}
