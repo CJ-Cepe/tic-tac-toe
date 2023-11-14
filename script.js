@@ -430,7 +430,7 @@ function DisplayController() {
 /*================== To Do =================*/
 
 /*  
-    - tiles on hover
+    - tiles on hover/
     - icons
     - add ai
 */
