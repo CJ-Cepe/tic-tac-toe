@@ -406,6 +406,10 @@ input:focus {
     transform: rotateY(180deg);
 }
 
+.tile-front:hover {
+    background-color: var(--purple2);
+}
+
 /*================== footer =================*/
 .disable {
     display: none;
