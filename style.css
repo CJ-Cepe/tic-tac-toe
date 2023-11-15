@@ -408,6 +408,7 @@ input:focus {
 
 .tile-front:hover {
     background-color: var(--purple2);
+    border: solid 10px var(--blue1);
 }
 
 /*================== footer =================*/
